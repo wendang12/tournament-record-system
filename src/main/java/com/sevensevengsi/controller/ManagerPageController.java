@@ -11,4 +11,13 @@ public class ManagerPageController {
 		return "forAuth/register-team";
 	}
 
+	@GetMapping("/edit-team-info")
+	public String editTeamInfo() {
+		return "forAuth/edit-team-info";
+	}
+	
+	@GetMapping("/team-record")
+	public String teamRecord() {
+		return "forAuth/team-record";
+	}
 }
