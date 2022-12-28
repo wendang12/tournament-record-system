@@ -1,11 +1,17 @@
 package com.sevensevengsi.controller;
 
+import com.sevensevengsi.repository.TeamRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AdminPageController {
+
+	@Autowired
+	private TeamRepo teamRepo;
 	
 	//Approve Teams
 	@GetMapping("teams/approval")
@@ -21,8 +27,10 @@ public class AdminPageController {
 	
 	//View All Teams
 	@GetMapping("teams/all")
-	public String teams() {
-		return "forAuth/teams";
+	public ModelAndView getAllTeams() {
+		ModelAndView model = new ModelAndView("forAuth/teams");
+		model.addObject("teams", teamRepo.findAll());
+		return model;
 	}
 	
 	//View All Tournament Records
