@@ -1,5 +1,6 @@
 package com.sevensevengsi.controller;
 
+import com.sevensevengsi.repository.GameRepo;
 import com.sevensevengsi.repository.TeamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,9 @@ public class AdminPageController {
 
 	@Autowired
 	private TeamRepo teamRepo;
+	
+	@Autowired
+	private GameRepo gameRepo;
 	
 	//Approve Teams
 	@GetMapping("teams/approval")
@@ -52,9 +56,11 @@ public class AdminPageController {
 	}
 	
 	//View All Games
-	@GetMapping("/games/all")
-	public String games() {
-		return "forAuth/games";
+	@GetMapping("games/all")
+	public ModelAndView games() {
+		ModelAndView model = new ModelAndView("forAuth/games");
+		model.addObject("games", gameRepo.findAll());
+		return model;
 	}
 	
 }

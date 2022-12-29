@@ -9,7 +9,13 @@
 
   <div th:replace="fragments/navbar.html :: header"></div>
   <div class="container">
-    <h1>REGISTER TEAM</h1>
+	<form>
+  <div class="mb-3">
+    <label for="teamName" class="form-label">Team Name</label>
+    <input type="text" class="form-control" id="teamName">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
   </div>
   <div th:replace="fragments/footer.html :: footer"></div>
 

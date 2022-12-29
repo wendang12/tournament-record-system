@@ -41,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/managers/all/**").hasRole("ADMIN")
 			.antMatchers("/officials/all/**").hasRole("ADMIN")
 			.antMatchers("/games/all/**").hasRole("ADMIN")
+			.antMatchers("/team-record/**").hasRole("ADMIN")
 			.antMatchers("/register-team/**").hasRole("MANAGER")
 			.antMatchers("/edit-team-info/**").hasRole("MANAGER")
 			.antMatchers("/team-record/**").hasRole("MANAGER")
