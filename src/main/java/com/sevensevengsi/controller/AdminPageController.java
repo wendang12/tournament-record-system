@@ -1,11 +1,13 @@
 package com.sevensevengsi.controller;
 
 import com.sevensevengsi.repository.GameRepo;
+import com.sevensevengsi.repository.ManagerRepo;
+import com.sevensevengsi.repository.OfficialsRepo;
 import com.sevensevengsi.repository.TeamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -16,6 +18,12 @@ public class AdminPageController {
 	
 	@Autowired
 	private GameRepo gameRepo;
+	
+	@Autowired
+	private OfficialsRepo officialsRepo;
+	
+	@Autowired
+	private ManagerRepo managerRepo;
 	
 	//Approve Teams
 	@GetMapping("teams/approval")
@@ -32,8 +40,8 @@ public class AdminPageController {
 	//View All Teams
 	@GetMapping("teams/all")
 	public ModelAndView getAllTeams() {
-		ModelAndView model = new ModelAndView("forAuth/teams");
-		model.addObject("teams", teamRepo.findAll());
+		ModelAndView model = new ModelAndView("forAuth/teams"); //directory of html file
+		model.addObject("teams", teamRepo.findAll()); //pass variable "teams" to html file
 		return model;
 	}
 	
@@ -45,14 +53,18 @@ public class AdminPageController {
 	
 	//View All Managers
 	@GetMapping("/managers/all")
-	public String teamManagers() {
-		return "forAuth/team-managers";
+	public ModelAndView teamManagers() {
+		ModelAndView model = new ModelAndView("forAuth/team-managers");
+		model.addObject("managers", managerRepo.findAll());
+		return model;
 	}
 	
 	//View All Officials
 	@GetMapping("/officials/all")
-	public String officials() {
-		return "forAuth/officials";
+	public ModelAndView officials() {
+		ModelAndView model = new ModelAndView("forAuth/officials");
+		model.addObject("officials", officialsRepo.findAll());
+		return model;
 	}
 	
 	//View All Games

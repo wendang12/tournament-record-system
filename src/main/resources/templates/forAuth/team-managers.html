@@ -7,11 +7,33 @@
 </head>
 <body>
 
-    <div th:replace="fragments/navbar.html :: header"></div>
-    <div class="container">
-        <h1>TEAM MANAGERS</h1>
-    </div>
-    <div th:replace="fragments/footer.html :: footer"></div>
+<div th:replace="fragments/navbar.html :: header"></div>
+<br />
+<div class="container">
+    <table class="table table-dark table-striped caption-top">
+        <caption>List of Team Managers</caption>
+        <thead>
+        <tr>
+            <th scope="col">Manager ID</th>
+            <th scope="col">Team Manager Name</th>
+            <th scope="col" style="text-align: center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="manager: ${managers}">
+            <th scope="row" th:text="${manager.id}" />
+            <td th:text="${manager.fullName}" />
+            <td style="text-align: center">
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <button type="button" class="btn btn-outline-primary">Update</button>
+                    <button type="button" class="btn btn-outline-primary">Delete</button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="fragments/footer.html :: footer"></div>
 
 </body>
 </html>
