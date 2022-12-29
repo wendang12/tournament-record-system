@@ -26,11 +26,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return NoOpPasswordEncoder.getInstance();
 	}
 	
+	//user authentication
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService);
 	}
 	
+	//user authorization / guarded APIs
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -53,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.logout()
 			.and()
 			.exceptionHandling().accessDeniedPage("/access-denied");
-;
+
 	}
 
 }
